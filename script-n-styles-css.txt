@@ -1,5 +1,5 @@
 ﻿ol.y li { 
-     ist-style-type : decimal; 
+     list-style-type : decimal; 
      font-size: 17px;
      font-weight: bold; 
      color: #99cc00;
@@ -7,7 +7,7 @@
 ol.y li span {
 	color:#63544c;
 	font-weight: normal;
-
+}
 ol.x li { 
      list-style-type: disc;   
      font-size: 17px;
