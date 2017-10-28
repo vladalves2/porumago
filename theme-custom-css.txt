@@ -1,0 +1,72 @@
+/*
+ここに独自の CSS を追加することができます。
+
+詳しくは上のヘルプアイコンをクリックしてください。
+*/
+
+h3.mago{
+  color: #63544c;
+  padding: 0.5em 0;
+  border-top: solid 2px #63544c;
+  border-bottom: solid 2px #63544c;
+  border-left: none;
+  font-size: 14;
+  font-weight: bold;
+}
+
+
+div.box27{
+  color: #444;
+    position: relative;
+    margin: 2em 0;
+    padding: 0.5em 1em;
+    border: solid 2px #ff8f66;
+}
+div.box27 span.boxTitle {
+    position: absolute;
+    display: inline-block;
+    top: -27px;
+    left: -2px;
+    padding: 0 9px;
+    height: 25px;
+    line-height: 25px;
+    vertical-align: middle;
+    font-size: 17px;
+    background: #ff8f66;
+    color: #ffffff;
+}
+div.box27 p.boxText{
+    color: #444;
+    margin: 0; 
+    padding: 0;
+}
+
+
+p.ptbr_serifu{
+    color: #444;
+    margin: 0;
+}
+p.jp_serifu{
+	color: #ff8f66; 
+	margin: 0;
+}
+div.serifu{
+	color: #444;
+    position: relative;
+    margin: 2em 0;
+    padding: 0.5em 1em;
+    border: solid 2px #ff8f66;
+}
+span.serifu{
+	position: absolute;
+    display: inline-block;
+    top: -27px;
+    left: -2px;
+    padding: 0 9px;
+    height: 25px;
+    line-height: 25px;
+    vertical-align: middle;
+    font-size: 17px;
+    background: #ff8f66;
+    color: #ffffff;
+}

@@ -1,0 +1,125 @@
+function hideAll(e) {
+    var kids = e.children;
+    var len = kids.length;
+    for (var i = 2; i < len; i+=2){
+        var kid = kids[i];
+        if (kid.style.display === 'none' ) {
+            kid.style.display = 'block';
+        } else {
+            kid.style.display = 'none';
+        }
+    }
+}
+
+function checkAnswer(e){
+  e.children[0].style.display='inline';
+  var idname = e.parentElement.parentElement.parentElement.id;
+  showAnswer(idname);
+}
+
+var gameTableShuffleId = {};
+
+function startShuffle(tabela){
+  gameTableShuffleId[tabela] = setInterval(function(){shuffleTable(tabela);}, 1000);
+}
+
+function showAnswer(tabela){
+  clearInterval(gameTableShuffleId[tabela]);
+  gameTableShuffleId[tabela] = setInterval(function(){shuffleTable(tabela);}, 2000);
+}
+
+function shuffleTable(idName){
+  var numVisibleItems = 0;
+  var lista = [];
+  var rows = document.getElementById(idName).rows;
+  for (var j = 0, row; row = rows[j]; j++){
+    var invisible = row.style.display == 'none';
+    
+    var cells = row.getElementsByTagName('td');
+    for (var i = 0, cell; cell = cells[i]; i++){
+      var hints = cell.getElementsByClassName('hint');
+      for (var k = 0, hint; hint = hints[k]; k++)
+        hint.style.display='none';
+      
+      var answers = cell.getElementsByClassName('answer');
+      for (var k = 0, answer; answer = answers[k]; k++)
+       	answer.style.display='none';
+
+      lista[lista.length] = cell.innerHTML;
+      if (!invisible) numVisibleItems++;
+    }
+    
+  }
+
+  shuffleList(lista);
+  
+  var bichos = [];
+  var t = 0;
+  for (var j = 0, row; row = rows[j]; j++){
+    var invisible = row.style.display == 'none';
+    
+    var cells = row.getElementsByTagName('td');
+    for (var i = 0, cell; cell = cells[i]; i++){
+      cell.innerHTML = lista[t];
+      if (!invisible) {
+        bichos[bichos.length] = cell.getElementsByClassName('answer')[0].innerHTML;
+        var hints = cell.getElementsByClassName('hint');
+        if (hints.length > 0){
+          var randId = Math.floor(Math.random()*hints.length);
+          hints[randId].style.display='inline';
+        }
+      }
+      t++;
+    }    
+  }
+
+  var newWordId = Math.floor(Math.random()*bichos.length);
+  var newWord = bichos[newWordId];
+  for (var j = 0, row; row = rows[j]; j++){
+    var headers = row.getElementsByTagName('th');
+    for (var i = 0, header; header = headers[i]; i++){
+      header.innerHTML = newWord;
+    }
+  }
+  
+  clearInterval(gameTableShuffleId[idName]);
+  gameTableShuffleId[idName] = setInterval(function(){showAnswer(idName);}, 10000);
+}
+
+function shuffleList(lista){
+	var n = lista.length;
+	for (var i = 0; i < n-1; i++) {
+		var randId = Math.floor(Math.random()*(n-i));
+		var tmp = lista[randId];
+		lista[randId] = lista[n-i-1];
+		lista[n-i-1] = tmp;
+	}	
+}
+
+function switchVisibility(e){
+  if ((e.style.opacity!= 0.0)||(e.style.opacity == "")){
+   	e.style.opacity = 0.0; 
+  } else {
+    e.style.opacity = 1.0; 
+  }
+}
+
+function switchColumnVisibility(e){
+  var id = e.cellIndex;
+  var tab = e.parentNode.parentNode;
+  var nRows = tab.rows.length;
+  var visibility=0.5;
+  for (var i = 1; i < nRows; i++) {
+    var linha = tab.rows[i]; 
+    var nCells = linha.cells.length;
+    if (nCells > id ){
+      if (visibility == 0.5) {
+        if ((linha.cells[id].style.opacity != 0.0)||(linha.cells[id].style.opacity == ""))
+          visibility = 0.0;
+        else 
+          visibility = 1.0;
+      }      
+      linha.cells[id].style.opacity = visibility; 
+    }
+  }
+}

@@ -1,0 +1,22 @@
+var gameCells = document.getElementsByClassName("gamecell");
+for (var i = 0; i < gameCells.length; i++){
+  gameCells[i].onclick = function(){checkAnswer(this);};
+}
+
+$(document).ready(function() {
+  $("div.serifu").on('click', function(){
+    	hideAll(this);
+  });
+  $(".hideable").on('click', function () {
+        switchVisibility(this);
+  });
+  $(".columnHideable").on('click', function () {
+        switchColumnVisibility(this);
+  });
+  $("tr.summary").on('click', function () {
+    $(this).nextUntil('tr.summary').slideToggle(10);  
+  });
+  $("tr.mastersummary").on('click', function () {
+    $(this).nextAll().not('tr.summary').slideToggle(10);  
+  });
+});
