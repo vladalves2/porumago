@@ -1,4 +1,6 @@
 ﻿ol.y li { 
+     padding-top:10px;
+     padding-bottom:10px;
      list-style-type : decimal; 
      font-size: 17px;
      font-weight: bold; 
@@ -9,14 +11,14 @@ ol.y li span {
 	font-weight: normal;
 }
 ol.x li { 
+     padding-top:10px;
+     padding-bottom:10px;
      list-style-type: disc;   
-     font-size: 17px;
-   
+     font-size: 17px;   
      color: #99cc00;/*ゴールド*/
 }
 ol.x li span {
-	color:#63544c;
-	
+	color:#63544c;	
 }
 ruby.mago{
   font-size:60%; 
